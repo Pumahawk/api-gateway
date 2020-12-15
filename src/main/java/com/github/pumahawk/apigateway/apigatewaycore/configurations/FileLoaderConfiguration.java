@@ -15,11 +15,11 @@ public class FileLoaderConfiguration implements LoaderConfiguration<FileSourceCo
     }
 
     private void loadFileConfiguration() {
-        if (this.file.isFile()) {
+        if (!this.file.isDirectory()) {
             list.add(new FileSourceConfiguration(this.file));
         } else {
             for (File c : this.file.listFiles()) {
-                if (c.isFile()) {
+                if (!c.isDirectory()) {
                     list.add(new FileSourceConfiguration(c));
                 }
             }
