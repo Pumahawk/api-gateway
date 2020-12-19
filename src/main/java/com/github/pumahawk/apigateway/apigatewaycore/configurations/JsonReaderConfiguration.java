@@ -1,5 +1,8 @@
 package com.github.pumahawk.apigateway.apigatewaycore.configurations;
 
+import java.util.Optional;
+
+import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,30 +22,28 @@ public class JsonReaderConfiguration implements ReaderConfiguration {
         private final ObjectMapper om;
         private final JsonNode root;
 
-        private String uri;
-
         public JsonGatewayConfiguration(SourceConfiguration source) {
             this.om = new ObjectMapper();
             try {
                 root = om.readTree(source.getStream());
-                loadConfiguration();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
 
-        private void loadConfiguration() {
-            JsonNode uriNode = root.get("uri");
-            if (uriNode.isTextual()) {
-                uri = uriNode.textValue();
-            } else {
-                throw new InvalidConfiguration("invalid format property uri");
-            }
+        @Override
+        public String type() {
+            return Optional
+                .of(root)
+                .map(r -> r.get("type"))
+                .filter(n -> n.isValueNode())
+                .map(v -> v.asText())
+                .get();
         }
 
         @Override
-        public String uri() {
-            return uri;
+        public TreeNode configuration() {
+            return root;
         }
 
     }
