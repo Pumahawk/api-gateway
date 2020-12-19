@@ -3,18 +3,17 @@ package com.github.pumahawk.apigateway.apigatewaycore;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.fasterxml.jackson.core.TreeNode;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public class ApplicationConfigurationModel {
 
-    List<ClassBasicConfiguration> sources = new LinkedList<>();
     List<ClassBasicConfiguration> loaders = new LinkedList<>();
     List<ClassBasicConfiguration> readers = new LinkedList<>();
     List<ClassBasicConfiguration> solvers = new LinkedList<>();
 
     public static class ClassBasicConfiguration {
         String className;
-        TreeNode properties;
+        JsonNode properties;
 
         public String getClassName() {
             return className;
@@ -24,21 +23,13 @@ public class ApplicationConfigurationModel {
             this.className = className;
         }
 
-        public TreeNode getProperties() {
+        public JsonNode getProperties() {
             return properties;
         }
 
-        public void setProperties(TreeNode properties) {
+        public void setProperties(JsonNode properties) {
             this.properties = properties;
         }
-    }
-
-    public List<ClassBasicConfiguration> getSources() {
-        return sources;
-    }
-
-    public void setSources(List<ClassBasicConfiguration> sources) {
-        this.sources = sources;
     }
 
     public List<ClassBasicConfiguration> getLoaders() {

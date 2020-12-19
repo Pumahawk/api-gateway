@@ -1,11 +1,11 @@
 package com.github.pumahawk.apigateway.apigatewaycore.configurations;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.TreeNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FileLoaderConfiguration implements LoaderConfiguration {
 
@@ -15,12 +15,8 @@ public class FileLoaderConfiguration implements LoaderConfiguration {
 
     @Override
     public void initConfiguration(TreeNode customConfiguration) {
-        
-        try {
-            this.consList = getSourceConfigurations(customConfiguration.traverse().readValueAs(PropertyConfigurations.class));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            ObjectMapper om = new ObjectMapper();
+            this.consList = getSourceConfigurations(om.convertValue(customConfiguration, PropertyConfigurations.class));
     }
 
     @Override

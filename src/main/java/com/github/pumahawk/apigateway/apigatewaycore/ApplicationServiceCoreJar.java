@@ -19,25 +19,26 @@ public class ApplicationServiceCoreJar {
 
     @Autowired
     private ApplicationServiceCoreJar(ApplicationConfigurationModel applicationConfigurationModel) {
+
         loaders = applicationConfigurationModel.getLoaders().stream().map(c -> {
             try {
-                var loader = (LoaderConfiguration) Class.forName(c.getClassName()).getDeclaredConstructor(LoaderConfiguration.class).newInstance();
+                var loader = (LoaderConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
                 loader.initConfiguration(c.getProperties());
                 return loader;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }).collect(Collectors.toList());
-        readers = applicationConfigurationModel.getLoaders().stream().map(c -> {
+        readers = applicationConfigurationModel.getReader().stream().map(c -> {
             try {
-                var readers = (ReaderConfiguration) Class.forName(c.getClassName()).getDeclaredConstructor(ReaderConfiguration.class).newInstance();
+                var readers = (ReaderConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
                 readers.initConfiguration(c.getProperties());
                 return readers;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }).collect(Collectors.toList());
-        solvers = applicationConfigurationModel.getLoaders().stream().map(c -> {
+        solvers = applicationConfigurationModel.getSolvers().stream().map(c -> {
             try {
                 var solvers = (SolverConfiguration) Class.forName(c.getClassName()).getDeclaredConstructor(SolverConfiguration.class).newInstance();
                 solvers.initConfiguration(c.getProperties());
