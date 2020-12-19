@@ -9,6 +9,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonReaderConfiguration implements ReaderConfiguration {
 
     @Override
+    public void initConfiguration(TreeNode customConfiguration) {
+    }
+
+    @Override
     public boolean support(SourceConfiguration source) {
         return String.valueOf(source.type()).toLowerCase().equals("json");
     }

@@ -7,18 +7,25 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.TreeNode;
 
-public class FileLoaderConfiguration implements LoaderConfiguration<FileSourceConfiguration> {
+public class FileLoaderConfiguration implements LoaderConfiguration {
 
     protected File file;
     protected LinkedList<FileSourceConfiguration> list = new LinkedList<>();
+    private List<SourceConfiguration> consList;
 
     @Override
-    public List<SourceConfiguration> getSourceConfigurations(TreeNode customConfiguration) {
+    public void initConfiguration(TreeNode customConfiguration) {
+        
         try {
-            return getSourceConfigurations(customConfiguration.traverse().readValueAs(PropertyConfigurations.class));
+            this.consList = getSourceConfigurations(customConfiguration.traverse().readValueAs(PropertyConfigurations.class));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<SourceConfiguration> getSourceConfigurations() {
+        return consList;
     }
 
     public List<SourceConfiguration> getSourceConfigurations(PropertyConfigurations customConfiguration) {

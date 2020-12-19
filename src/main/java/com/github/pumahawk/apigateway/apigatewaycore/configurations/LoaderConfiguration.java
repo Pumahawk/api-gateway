@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.TreeNode;
 
-public interface LoaderConfiguration<T extends SourceConfiguration> {
+public interface LoaderConfiguration {
     boolean support(String type);
-    List<SourceConfiguration> getSourceConfigurations(TreeNode customConfiguration);
+    void initConfiguration(TreeNode customConfiguration);
+    List<SourceConfiguration> getSourceConfigurations();
 }
