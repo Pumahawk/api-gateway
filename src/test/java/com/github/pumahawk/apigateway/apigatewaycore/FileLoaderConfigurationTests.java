@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 import com.github.pumahawk.apigateway.apigatewaycore.configurations.FileLoaderConfiguration;
+import com.github.pumahawk.apigateway.apigatewaycore.configurations.FileLoaderConfiguration.PropertyConfigurations;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,8 +39,9 @@ public class FileLoaderConfigurationTests {
         String path = getFilePath("test1.json");
         var f = new File(path);
         assertTrue(f.exists());
-
-        var fl = new FileLoaderConfiguration(f);
+        PropertyConfigurations prconf = new PropertyConfigurations();
+        prconf.setLocation(path);
+        var fl = new FileLoaderConfiguration().getSourceConfigurations(prconf);
 
         var iterator = fl.iterator();
         assertTrue(iterator.hasNext());
@@ -57,7 +59,9 @@ public class FileLoaderConfigurationTests {
         assertTrue(f.exists());
 
         
-        var fl = new FileLoaderConfiguration(f);
+        PropertyConfigurations prconf = new PropertyConfigurations();
+        prconf.setLocation(path);
+        var fl = new FileLoaderConfiguration().getSourceConfigurations(prconf);
 
         var iterator = fl.iterator();
         assertTrue(iterator.hasNext());
