@@ -40,7 +40,7 @@ public class ApplicationServiceCoreJar {
         }).collect(Collectors.toList());
         solvers = applicationConfigurationModel.getSolvers().stream().map(c -> {
             try {
-                var solvers = (SolverConfiguration) Class.forName(c.getClassName()).getDeclaredConstructor(SolverConfiguration.class).newInstance();
+                var solvers = (SolverConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
                 solvers.initConfiguration(c.getProperties());
                 return solvers;
             } catch (Exception e) {

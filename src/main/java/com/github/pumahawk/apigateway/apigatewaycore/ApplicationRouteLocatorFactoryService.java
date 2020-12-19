@@ -36,16 +36,14 @@ public class ApplicationRouteLocatorFactoryService {
             })
             .filter(Optional::isPresent)
             .map(Optional::get)
-            .map(c -> {
-                return jar
+            .forEach(c -> {
+                jar
                     .getSolver()
                     .stream()
                     .filter(s -> s.support(c.type()))
-                    .findAny();
-            })
-            .filter(Optional::isPresent)
-            .map(Optional::get)
-            .forEach(s -> routes.route(builder -> s.solve(builder)));
+                    .findAny()
+                    .ifPresent(s -> routes.route(builder -> s.solve(builder, c)));
+            });
 
         return routes.build();
     }
