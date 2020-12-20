@@ -5,9 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import com.github.pumahawk.apigateway.apigatewaycore.configurations.FileLoaderConfiguration;
+import com.github.pumahawk.apigateway.apigatewaycore.configurations.SourceConfiguration;
 import com.github.pumahawk.apigateway.apigatewaycore.configurations.FileLoaderConfiguration.PropertyConfigurations;
 
 import org.junit.jupiter.api.Test;
@@ -37,15 +40,15 @@ public class FileLoaderConfigurationTests {
     @Test
     public void loadSimpleFileTest() {
         String path = getFilePath("test1.json");
-        var f = new File(path);
+        File f = new File(path);
         assertTrue(f.exists());
         PropertyConfigurations prconf = new PropertyConfigurations();
         prconf.setLocation(path);
-        var fl = new FileLoaderConfiguration().getSourceConfigurations(prconf);
+        List<SourceConfiguration> fl = new FileLoaderConfiguration().getSourceConfigurations(prconf);
 
-        var iterator = fl.iterator();
+        Iterator<SourceConfiguration> iterator = fl.iterator();
         assertTrue(iterator.hasNext());
-        var c = iterator.next();
+        SourceConfiguration c = iterator.next();
         assertFalse(iterator.hasNext());
         assertEquals("json", c.type());
         
@@ -55,23 +58,23 @@ public class FileLoaderConfigurationTests {
     @Test
     public void loadFolderFileTest() {
         String path = getFilePath("test2");
-        var f = new File(path);
+        File f = new File(path);
         assertTrue(f.exists());
 
         
         PropertyConfigurations prconf = new PropertyConfigurations();
         prconf.setLocation(path);
-        var fl = new FileLoaderConfiguration().getSourceConfigurations(prconf);
+        List<SourceConfiguration> fl = new FileLoaderConfiguration().getSourceConfigurations(prconf);
 
-        var iterator = fl.iterator();
+        Iterator<SourceConfiguration> iterator = fl.iterator();
         assertTrue(iterator.hasNext());
 
-        var c1 = iterator.next();
+        SourceConfiguration c1 = iterator.next();
         assertEquals("json", c1.type());
         
         assertTrue(iterator.hasNext());
 
-        var c2 = iterator.next();
+        SourceConfiguration c2 = iterator.next();
         assertEquals("json", c2.type());
 
         assertFalse(iterator.hasNext());

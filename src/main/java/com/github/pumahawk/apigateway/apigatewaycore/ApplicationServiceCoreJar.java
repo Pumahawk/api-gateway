@@ -22,7 +22,7 @@ public class ApplicationServiceCoreJar {
 
         loaders = applicationConfigurationModel.getLoaders().stream().map(c -> {
             try {
-                var loader = (LoaderConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
+                LoaderConfiguration loader = (LoaderConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
                 loader.initConfiguration(c.getProperties());
                 return loader;
             } catch (Exception e) {
@@ -31,7 +31,7 @@ public class ApplicationServiceCoreJar {
         }).collect(Collectors.toList());
         readers = applicationConfigurationModel.getReader().stream().map(c -> {
             try {
-                var readers = (ReaderConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
+                ReaderConfiguration readers = (ReaderConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
                 readers.initConfiguration(c.getProperties());
                 return readers;
             } catch (Exception e) {
@@ -40,7 +40,7 @@ public class ApplicationServiceCoreJar {
         }).collect(Collectors.toList());
         solvers = applicationConfigurationModel.getSolvers().stream().map(c -> {
             try {
-                var solvers = (SolverConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
+                SolverConfiguration solvers = (SolverConfiguration) Class.forName(c.getClassName()).getConstructor().newInstance();
                 solvers.initConfiguration(c.getProperties());
                 return solvers;
             } catch (Exception e) {

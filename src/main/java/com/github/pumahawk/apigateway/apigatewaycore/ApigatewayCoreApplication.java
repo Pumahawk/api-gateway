@@ -36,7 +36,7 @@ public class ApigatewayCoreApplication {
 
 
 	public ApplicationConfigurationModel applicationConfigurationModelDefault() {
-		var c = new ApplicationConfigurationModel();
+		ApplicationConfigurationModel c = new ApplicationConfigurationModel();
 
 		c.setLoaders(new LinkedList<>());
 		c.setReaders(new LinkedList<>());

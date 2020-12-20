@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayInputStream;
 
 import com.fasterxml.jackson.databind.node.ValueNode;
+import com.github.pumahawk.apigateway.apigatewaycore.configurations.GatewayConfiguration;
 import com.github.pumahawk.apigateway.apigatewaycore.configurations.JsonReaderConfiguration;
 import com.github.pumahawk.apigateway.apigatewaycore.configurations.SourceConfiguration;
 
@@ -22,15 +23,15 @@ public class JsonReaderConfigurationTests {
 
     @Test
     public void loadSimpleConfiguration() {
-        var configuration = "{"
+        String configuration = "{"
             + "\"type\":\"simple\","
             + "\"uri\":\"http://localhost:8080\""
             + "}";
 
-        var l = new JsonReaderConfiguration();
-        var c = getJsonSourceConfiguration(configuration);
+            JsonReaderConfiguration l = new JsonReaderConfiguration();
+            SourceConfiguration c = getJsonSourceConfiguration(configuration);
 
-        var gatewayConf = l.load(c);
+            GatewayConfiguration  gatewayConf = l.load(c);
 
         assertEquals("simple", gatewayConf.type());
         assertEquals("simple", ((ValueNode) gatewayConf.configuration().get("type")).asText());
