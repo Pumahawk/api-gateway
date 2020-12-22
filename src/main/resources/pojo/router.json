@@ -1,0 +1,97 @@
+{
+    "type": "simple",
+    "alwaysTrue": true,
+    "method": "string",
+    "host": [
+        "string"
+    ],
+    "path": [
+        "string"
+    ],
+    "remoteAddr": [
+        "string"
+    ],
+    "filter": {
+        "addRequestHeader": [
+            {
+                "headerName": "string",
+                "headerValue": "string"
+            }
+        ],
+        "addRequestParameter": [
+            {
+                "param": "string",
+                "value": "string"
+            }
+        ],
+        "addResponseHeader": [
+            {
+                "headerName": "string",
+                "headerValue": "string"
+            }
+        ],
+        "dedupeResponseHeader": [
+            {
+                "headerName": "string",
+                "strategy": "string"
+            }
+        ],
+        "prefixPath": "string",
+        "preserveHostHeader": false,
+        "redirect": {
+            "status": 200,
+            "url": "string"
+        },
+        "removeRequestHeader": [
+            "string"
+        ],
+        "removeRequestParameter": [
+            "string"
+        ],
+        "removeResponseHeader": [
+            "string"
+        ],
+        "requestHeaderToRequestUri": "string",
+        "retry": 5,
+        "rewriteLocationResponseHeader": [
+            {
+                "stripVersionMode": "string",
+                "locationHeaderName": "string",
+                "hostValue": "string",
+                "protocolsRegex": "string"
+            }
+        ],
+        "rewritePath": [
+            {
+                "regex": "string",
+                "replacement": "string"
+            }
+        ],
+        "rewriteResponseHeader": [
+            {
+                "headerName": "string",
+                "regex": "string",
+                "replacement": "string"
+            }
+        ],
+        "saveSession": false,
+        "secureHeaders": true,
+        "setPath": "string",
+        "setRequestHeader": [
+            {
+                "headerName": "String",
+                "headerValue": "String"
+            }
+        ],
+        "setRequestSize": -1,
+        "setResponseHeader": [
+            {
+                "headerName": "string",
+                "headerValue": "string"
+            }
+        ],
+        "setStatus": 200,
+        "stripPrefix": -1
+    },
+    "uri": "https://httpbin.org"
+}

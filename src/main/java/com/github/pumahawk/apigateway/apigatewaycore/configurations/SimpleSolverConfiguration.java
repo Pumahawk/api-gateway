@@ -6,6 +6,7 @@ import java.util.function.Function;
 
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pumahawk.apigateway.apigatewaycore.configurations.resolvers.simple.SimpleGatewayConfiguration;
 
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.builder.BooleanSpec;
@@ -35,7 +36,7 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
 
         
         conf
-            .filter(SimpleGatewayConfiguration::isAlwaysTrue)
+            .filter(SimpleGatewayConfiguration::getAlwaysTrue)
             .ifPresent(v -> mapper.map(b -> b.alwaysTrue()));
         conf
             .map(SimpleGatewayConfiguration::getMethod)
@@ -69,74 +70,6 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
             i++;
         }
         return arr;
-    }
-
-    public static class SimpleGatewayConfiguration {
-        String type;
-
-        boolean alwaysTrue;
-        String method;
-        List<String> host;
-        List<String> path;
-        List<String> remoteAddr;
-        String uri;
-
-        public String getUri() {
-            return uri;
-        }
-
-        public void setUri(String uri) {
-            this.uri = uri;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public boolean isAlwaysTrue() {
-            return alwaysTrue;
-        }
-
-        public void setAlwaysTrue(boolean alwaysTrue) {
-            this.alwaysTrue = alwaysTrue;
-        }
-
-        public String getMethod() {
-            return method;
-        }
-
-        public void setMethod(String method) {
-            this.method = method;
-        }
-
-        public List<String> getHost() {
-            return host;
-        }
-
-        public void setHost(List<String> host) {
-            this.host = host;
-        }
-
-        public List<String> getPath() {
-            return path;
-        }
-
-        public void setPath(List<String> path) {
-            this.path = path;
-        }
-
-        public List<String> getRemoteAddr() {
-            return remoteAddr;
-        }
-
-        public void setRemoteAddr(List<String> remoteAddr) {
-            this.remoteAddr = remoteAddr;
-        }
-        
     }
 
     private class MapperUriSpec {
