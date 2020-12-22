@@ -38,7 +38,8 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
 
         
         conf
-            .filter(SimpleGatewayConfiguration::getAlwaysTrue)
+            .map(SimpleGatewayConfiguration::getAlwaysTrue)
+            .filter(x -> x)
             .ifPresent(v -> mapper.map(b -> b.alwaysTrue()));
         conf
             .map(SimpleGatewayConfiguration::getMethod)
