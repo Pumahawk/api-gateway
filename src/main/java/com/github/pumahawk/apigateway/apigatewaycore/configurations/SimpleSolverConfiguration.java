@@ -3,6 +3,7 @@ package com.github.pumahawk.apigateway.apigatewaycore.configurations;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +12,7 @@ import com.github.pumahawk.apigateway.apigatewaycore.configurations.resolvers.si
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.builder.BooleanSpec;
 import org.springframework.cloud.gateway.route.builder.Buildable;
+import org.springframework.cloud.gateway.route.builder.GatewayFilterSpec;
 import org.springframework.cloud.gateway.route.builder.PredicateSpec;
 import org.springframework.cloud.gateway.route.builder.UriSpec;
 
@@ -55,6 +57,13 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
             .map(l -> valorizeArr(new String[l.size()], l))
             .ifPresent(pattern -> mapper.map(b -> b.remoteAddr(pattern)));
         
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getAddRequestHeader())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.addRequestHeader(x.getHeaderName(), x.getHeaderValue())));
+        
         return mapper.uri(c.getUri());
     }
 
@@ -86,6 +95,12 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
             } else if (builder instanceof BooleanSpec) {
                 builder = ((BooleanSpec) builder).and();
                 builder = function.apply((PredicateSpec) builder);
+            }
+        }
+
+        public void filter(Function<GatewayFilterSpec, UriSpec> consumer) {
+            if (builder instanceof BooleanSpec) {
+                ((BooleanSpec) builder).filters(f -> consumer.apply(f));
             }
         }
 
