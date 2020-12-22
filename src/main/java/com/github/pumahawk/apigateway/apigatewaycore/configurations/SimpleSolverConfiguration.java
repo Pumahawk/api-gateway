@@ -92,7 +92,8 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
 
         conf
             .map(SimpleGatewayConfiguration::getFilter)
-            .filter(f -> f.getPreserveHostHeader())
+            .map(f -> f.getPreserveHostHeader())
+            .filter(x -> x)
             .ifPresent(x -> mapper.filter(f -> f.preserveHostHeader()));
 
         conf
@@ -154,12 +155,14 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
 
         conf
             .map(SimpleGatewayConfiguration::getFilter)
-            .filter(f -> f.getSaveSession())
+            .map(f -> f.getSaveSession())
+            .filter(x -> x)
             .ifPresent(x -> mapper.filter(f -> f.saveSession()));
 
         conf
             .map(SimpleGatewayConfiguration::getFilter)
-            .filter(f -> f.getSecureHeaders())
+            .map(f -> f.getSecureHeaders())
+            .filter(x -> x)
             .ifPresent(x -> mapper.filter(f -> f.secureHeaders()));
 
             
