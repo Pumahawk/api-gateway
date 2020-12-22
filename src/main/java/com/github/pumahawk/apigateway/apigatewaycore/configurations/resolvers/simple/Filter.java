@@ -78,7 +78,7 @@ public class Filter {
     @JsonProperty("setRequestHeader")
     private List<SetRequestHeader> setRequestHeader = null;
     @JsonProperty("setRequestSize")
-    private Integer setRequestSize;
+    private Long setRequestSize;
     @JsonProperty("setResponseHeader")
     private List<SetResponseHeader> setResponseHeader = null;
     @JsonProperty("setStatus")
@@ -279,12 +279,12 @@ public class Filter {
     }
 
     @JsonProperty("setRequestSize")
-    public Integer getSetRequestSize() {
+    public Long getSetRequestSize() {
         return setRequestSize;
     }
 
     @JsonProperty("setRequestSize")
-    public void setSetRequestSize(Integer setRequestSize) {
+    public void setSetRequestSize(Long setRequestSize) {
         this.setRequestSize = setRequestSize;
     }
 

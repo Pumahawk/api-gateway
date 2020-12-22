@@ -85,6 +85,117 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
             .orElseGet(() -> Stream.empty())
             .forEach(x -> mapper.filter(f -> f.dedupeResponseHeader(x.getHeaderName(), x.getStrategy())));
 
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getPrefixPath())
+            .ifPresent(x -> mapper.filter(f -> f.prefixPath(x)));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .filter(f -> f.getPreserveHostHeader())
+            .ifPresent(x -> mapper.filter(f -> f.preserveHostHeader()));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRedirect())
+            .ifPresent(x -> mapper.filter(f -> f.redirect(x.getStatus(), x.getUrl())));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRemoveRequestHeader())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.removeRequestHeader(x)));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRemoveRequestParameter())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.removeRequestParameter(x)));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRemoveResponseHeader())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.removeResponseHeader(x)));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRequestHeaderToRequestUri())
+            .ifPresent(x -> mapper.filter(f -> f.requestHeaderToRequestUri(x)));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRetry())
+            .ifPresent(x -> mapper.filter(f -> f.retry(x)));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRewriteLocationResponseHeader())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.rewriteLocationResponseHeader(x.getStripVersionMode(), x.getLocationHeaderName(), x.getHostValue(), x.getProtocolsRegex())));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRewritePath())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.rewritePath(x.getRegex(), x.getReplacement())));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getRewriteResponseHeader())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.rewriteResponseHeader(x.getHeaderName(), x.getRegex(), x.getReplacement())));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .filter(f -> f.getSaveSession())
+            .ifPresent(x -> mapper.filter(f -> f.saveSession()));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .filter(f -> f.getSecureHeaders())
+            .ifPresent(x -> mapper.filter(f -> f.secureHeaders()));
+
+            
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getSetPath())
+            .ifPresent(x -> mapper.filter(f -> f.setPath(x)));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getSetRequestHeader())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.setRequestHeader(x.getHeaderName(), x.getHeaderValue())));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getSetRequestSize())
+            .ifPresent(x -> mapper.filter(f -> f.setRequestSize(x)));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getSetResponseHeader())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.setResponseHeader(x.getHeaderName(), x.getHeaderValue())));
+
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getSetStatus())
+            .ifPresent(x -> mapper.filter(f -> f.setStatus(x)));
+            
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getStripPrefix())
+            .ifPresent(x -> mapper.filter(f -> f.stripPrefix(x)));
 
         return mapper.uri(c.getUri());
     }
