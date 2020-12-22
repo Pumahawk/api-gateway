@@ -71,6 +71,13 @@ public class SimpleSolverConfiguration implements SolverConfiguration {
             .orElseGet(() -> Stream.empty())
             .forEach(x -> mapper.filter(f -> f.addRequestParameter(x.getParam(), x.getValue())));
 
+        conf
+            .map(SimpleGatewayConfiguration::getFilter)
+            .map(f -> f.getAddResponseHeader())
+            .map(List::stream)
+            .orElseGet(() -> Stream.empty())
+            .forEach(x -> mapper.filter(f -> f.addResponseHeader(x.getHeaderName(), x.getHeaderValue())));
+
 
         return mapper.uri(c.getUri());
     }
