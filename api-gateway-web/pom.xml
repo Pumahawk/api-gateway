@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.github.pumahawk.apigateway</groupId>
-	<artifactId>apigateway-core</artifactId>
+	<artifactId>apigateway-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>apigateway-core</name>
+	<name>apigateway-web</name>
 	<description>Apigateway</description>
 
 	<properties>
