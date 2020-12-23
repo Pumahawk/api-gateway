@@ -1,0 +1,8 @@
+{
+    "type": "clone-session",
+    "uri": "string",
+    "guestToken": {
+        "name": "string",
+        "value": "string"
+    }
+}
