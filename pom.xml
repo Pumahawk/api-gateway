@@ -23,7 +23,7 @@
 	<modules>
 		<module>apigateway-web</module>
 		<module>apigateway-itf</module>
-	  <module>apigateway-processors</module>
+		<module>apigateway-processors</module>
   </modules>
 
 </project>
