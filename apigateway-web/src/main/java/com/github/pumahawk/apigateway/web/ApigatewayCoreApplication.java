@@ -1,4 +1,4 @@
-package com.github.pumahawk.apigateway;
+package com.github.pumahawk.apigateway.web;
 
 import java.io.File;
 import java.util.LinkedList;

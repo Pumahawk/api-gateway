@@ -1,5 +1,5 @@
 
-package com.github.pumahawk.apigateway.web.resolvers.clonesession;
+package com.github.pumahawk.apigateway.processors.resolvers.clonesession;
 
 import java.util.HashMap;
 import java.util.Map;

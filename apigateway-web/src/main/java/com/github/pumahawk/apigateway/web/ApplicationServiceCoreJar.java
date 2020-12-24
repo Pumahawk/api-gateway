@@ -1,4 +1,4 @@
-package com.github.pumahawk.apigateway;
+package com.github.pumahawk.apigateway.web;
 
 import java.util.List;
 import java.util.stream.Collectors;

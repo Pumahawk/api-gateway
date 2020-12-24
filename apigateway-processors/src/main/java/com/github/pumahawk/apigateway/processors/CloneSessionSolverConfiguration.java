@@ -1,4 +1,4 @@
-package com.github.pumahawk.apigateway.web;
+package com.github.pumahawk.apigateway.processors;
 
 import java.io.IOException;
 import java.net.CookieManager;
@@ -14,15 +14,13 @@ import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pumahawk.apigateway.itf.configurations.GatewayConfiguration;
 import com.github.pumahawk.apigateway.itf.configurations.SolverConfiguration;
-import com.github.pumahawk.apigateway.web.resolvers.clonesession.CloneSessionConfiguration;
+import com.github.pumahawk.apigateway.processors.resolvers.clonesession.CloneSessionConfiguration;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.builder.Buildable;
 import org.springframework.cloud.gateway.route.builder.PredicateSpec;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.server.ServerWebExchange;
 
 import reactor.core.publisher.Mono;
 
