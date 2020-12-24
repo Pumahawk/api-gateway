@@ -37,6 +37,11 @@
 			<artifactId>apigateway-itf</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway</artifactId>
+			<version>3.0.0</version>
+		</dependency>
   </dependencies>
 
   <build>

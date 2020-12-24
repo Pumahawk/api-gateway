@@ -1,4 +1,4 @@
-package com.github.pumahawk.apigateway.web;
+package com.github.pumahawk.apigateway.processors;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pumahawk.apigateway.itf.configurations.GatewayConfiguration;
 import com.github.pumahawk.apigateway.itf.configurations.SolverConfiguration;
-import com.github.pumahawk.apigateway.web.resolvers.simple.SimpleGatewayConfiguration;
+import com.github.pumahawk.apigateway.processors.resolvers.simple.SimpleGatewayConfiguration;
 
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.builder.BooleanSpec;

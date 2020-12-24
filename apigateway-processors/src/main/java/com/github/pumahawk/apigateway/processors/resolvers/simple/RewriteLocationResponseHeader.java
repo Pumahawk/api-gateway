@@ -1,5 +1,5 @@
 
-package com.github.pumahawk.apigateway.web.resolvers.simple;
+package com.github.pumahawk.apigateway.processors.resolvers.simple;
 
 import java.util.HashMap;
 import java.util.Map;
