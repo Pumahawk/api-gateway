@@ -1,4 +1,4 @@
-package com.github.pumahawk.apigateway.processors;
+package com.github.pumahawk.apigateway.extension.clonsesession;
 
 import java.io.IOException;
 import java.net.CookieManager;
@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pumahawk.apigateway.extension.clonsesession.resolvers.clonesession.CloneSessionConfiguration;
 import com.github.pumahawk.apigateway.itf.configurations.GatewayConfiguration;
 import com.github.pumahawk.apigateway.itf.configurations.SolverConfiguration;
-import com.github.pumahawk.apigateway.processors.resolvers.clonesession.CloneSessionConfiguration;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
