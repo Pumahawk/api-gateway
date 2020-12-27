@@ -1,23 +1,23 @@
 # API Gateway
 
-Embanded API gateway focus on customize configurations and extensions.
+Embanded API gateway focuses on customized configurations and extensions.
 
-It' possible divides logic in 3 importat points of abstract configuration location.
+It's possible to divide logic in 3 importat points of abstract configuration location.
 
 * **Loaders**  
-Classes responsable to retrive configuration location and convert it in a *InputStream*.
+These classes are responsable of retrieving configuration location and converting it in a *InputStream*.
 
 * **Readers**  
-Classes responsable to interpret *InputStream* given by *Loaders* and convert it in a *TreeNode*. *TreeNode* is an object from library **Jackson-core**.
+These classes are responsable of interpreting *InputStream* given by *Loaders* and converting it in a *TreeNode*. *TreeNode* is an object of the **Jackson-core** library.
 
 * **Solvers**  
-Classes responsable to interpret *TreeNode* and consume a *PredicateSpec* to create the final API gateway configuration.
+These classes are responsable of interpreting *TreeNode* and consuming a *PredicateSpec* to create the final API gateway configuration.
 
 ## Configuration file
 
 To create a configuration for API gateway you must create `gateway.json` file with the basic configuration.
 
-To use a different location file is possibile define it with a system property **fileConfigurationPath**.
+To use a different location file it is possibile to define it with a **fileConfigurationPath** system property.
 
 ```json
 {
@@ -45,7 +45,7 @@ To use a different location file is possibile define it with a system property *
 
 ## Configuration classes
 
-API Gateway have differents classes already implemented.
+API Gateway has different classes that are already implemented.
 
 ### Loaders
 
@@ -55,13 +55,13 @@ API Gateway have differents classes already implemented.
 
 **Description**
 
-Can read configuration from directory or file in the filesystem.
+Loaders can read the configurations from a directory or a file in the filesystem.
 
 **Properties**:
 
-* **location**: Directory or file with routers configuration inside.
+* **location**: Directory or file with the routes' configurations inside.
 
-**Return**: Return a InputStream of each file with **type** volorized with the extension of the file.
+**Return**: For each file, an InputStream with a **type**, which is valorized with the extension of the file, returns.
 
 ---
 
@@ -73,11 +73,11 @@ Can read configuration from directory or file in the filesystem.
 
 **Description**
 
-Read input stream of type `json` and convert directly in a *TreeNode*.
+Read a  `json` input stream and convert it directly in a *TreeNode*.
 
 **Properties**: none
 
-**Return**: *TreeNode* of entire json given by input stream.
+**Return**: *TreeNode* of the entire json given by the input stream.
 
 ---
 
@@ -201,4 +201,4 @@ Simple wrapper of class PredicateSpec to create a route directly with Spring lib
 
 ## Extension
 
-It's possible to add custom class inside a jar putting in a special directory dedicated of extension using a system property **loader.path**.
+It's possible to add custom class inside a jar putting it in a special directory dedicated to the extension using a **loader.path** system property.
